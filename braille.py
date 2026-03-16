@@ -1,36 +1,34 @@
-BRAILLE_DICT = {
-    "a": "⠁","b": "⠃","c": "⠉","d": "⠙","e": "⠑",
-    "f": "⠋","g": "⠛","h": "⠓","i": "⠊","j": "⠚",
-    "k": "⠅","l": "⠇","m": "⠍","n": "⠝","o": "⠕",
-    "p": "⠏","q": "⠟","r": "⠗","s": "⠎","t": "⠞",
-    "u": "⠥","v": "⠧","w": "⠺","x": "⠭","y": "⠽","z": "⠵",
+braille = {
+    "a": "⠁", "b": "⠃", "c": "⠉", "d": "⠙", "e": "⠑",
+    "f": "⠋", "g": "⠛", "h": "⠓", "i": "⠊", "j": "⠚",
+    "k": "⠅", "l": "⠇", "m": "⠍", "n": "⠝", "o": "⠕",
+    "p": "⠏", "q": "⠟", "r": "⠗", "s": "⠎", "t": "⠞",
+    "u": "⠥", "v": "⠧", "w": "⠺", "x": "⠭", "y": "⠽",
+    "z": "⠵",
 
-    "1": "⠼⠁","2": "⠼⠃","3": "⠼⠉","4": "⠼⠙","5": "⠼⠑",
-    "6": "⠼⠋","7": "⠼⠛","8": "⠼⠓","9": "⠼⠊","0": "⠼⠚",
+    "1": "⠼⠁", "2": "⠼⠃", "3": "⠼⠉",
+    "4": "⠼⠙", "5": "⠼⠑", "6": "⠼⠋",
+    "7": "⠼⠛", "8": "⠼⠓", "9": "⠼⠊",
+    "0": "⠼⠚",
 
-    ".": "⠲",
-    ",": "⠂",
-    "?": "⠦",
-    "!": "⠖",
     " ": " "
 }
 
-def traducir_a_braille(texto):
-    resultado = ""
+palabra = input("Ingrese el texto a traducir: ").lower()
 
-    for caracter in texto.lower():
-        if caracter in BRAILLE_DICT:
-            resultado += BRAILLE_DICT[caracter]
-        else:
-            resultado += "?"
-import os
+textoTraducido = ""
 
-def guardar_archivo(texto, ruta="salida/braille.txt"):
-    
-    os.makedirs("salida", exist_ok=True)
+for caracter in palabra:
+    if caracter in braille:
+        textoTraducido += braille[caracter]
+    else:
+        textoTraducido += "?"  # para caracteres no reconocidos
 
-    with open(ruta, "w", encoding="utf-8") as archivo:
-        archivo.write(texto)
+# Mostrar resultado
+print("\nTraducción a braille:")
+print(textoTraducido)
 
-    print(f"\nArchivo guardado en: {ruta}")
-    return resultado
+with open("braille.txt", "w", encoding="utf-8") as archivo:
+    archivo.write(textoTraducido)
+
+print("\nArchivo braille.txt guardado correctamente")
